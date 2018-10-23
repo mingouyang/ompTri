@@ -27,9 +27,9 @@ Command line options:
 
 -f a (input file format is AdjacencyGraph; default)
 
--f m (input file format is mmio)
+-f m (input file format is adjacency mmio)
 
--f t (input file format is tsv)
+-f t (input file format is adjacency tsv)
 
 -g filename (graph file name)
 
@@ -51,38 +51,8 @@ To work with graphs large and small, numbers in upper and lower CSR are stored a
 
 =======
 
-Known issue:
+Known issues:
 
-The graph 201512020330.v226196185_e480047894.tsv has four self-loops.
-
-./ompTri -v -f t -g 201512020330.v226196185_e480047894.tsv
-
-self-loop: i 175254774, u 44280903
-
-self-loop: i 1050287889, u 109472998
-
-self-loop: i 1051096869, u 109494531
-
-self-loop: i 1051369905, u 109512826
-
-file has 10289801772 bytes, n 226196185, m 240023947
-
-2-core: 211971722 vertices become 0-degree
-
-211971723 vertices of 0-degree are removed
-
-n 14224462, m 28052223, 88 threads
-
-reading file:	33.977310 sec
-
-preprocessing:	46.353436 sec
-
-counting:	0.061484 sec
-
-26 triangles
-
-=======
-
-Another known issue:
+The graph MAWI 201512020330.v226196185_e480047894.tsv has four self-loops.
 
 The graph friendster_adj.tsv is different from friendster_adj.mmio.  The former has 181,716 triangles, and the latter has 4,173,724,142.
