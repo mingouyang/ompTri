@@ -43,9 +43,9 @@ Examples:
 
 =======
 
-Known issues:
+Known issue:
 
-201512020330.v226196185_e480047894.tsv has four self-loops
+The graph 201512020330.v226196185_e480047894.tsv has four self-loops.
 
 ./ompTri -v -f t -g 201512020330.v226196185_e480047894.tsv
 
@@ -72,3 +72,9 @@ preprocessing:	46.353436 sec
 counting:	0.061484 sec
 
 26 triangles
+
+=======
+
+Another known issue:
+
+The graph friendster_adj.tsv is different from friendster_adj.mmio.  The former has 181,716 triangles, and the latter has 4,173,724,142.
