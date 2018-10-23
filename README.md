@@ -23,7 +23,7 @@ gcc -Wall -O3 -fopenmp *.c -o ompTri
 
 Command line options:
 
--f a (input file format is AdjacencyGraph)
+-f a (input file format is AdjacencyGraph; default)
 
 -f m (input file format is mmio)
 
@@ -31,9 +31,9 @@ Command line options:
 
 -g filename (graph file name)
 
--t num (use num threads)
+-t num (use num threads; default max)
 
--v (verbose)
+-v (verbose on; default off)
 
 Examples:
 
