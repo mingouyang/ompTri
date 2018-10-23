@@ -1,7 +1,7 @@
 # ompTri
 Triangle Counting with A Multi-Core Computer
 
-I worked on this project in response to the GraphChallenge: https://graphchallenge.mit.edu/
+I developed this project in response to the GraphChallenge: https://graphchallenge.mit.edu/
 
 The results are described in this paper:
 
