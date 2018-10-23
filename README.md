@@ -22,6 +22,7 @@ Command line options:
 -f a
 
   input file format is AdjacencyGraph
+
 -f m
 
   input file format is mmio
