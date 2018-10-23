@@ -43,6 +43,10 @@ Examples:
 
 =======
 
+To work with graphs large and small, numbers in CSR are stored as 64-bit unsigned integers (uint64_t).  For almost all graphs in the challenge, improved performance can be obtained by switching to 32-bit unsigned integers (uint32_t).
+
+=======
+
 Known issue:
 
 The graph 201512020330.v226196185_e480047894.tsv has four self-loops.
