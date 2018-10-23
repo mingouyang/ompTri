@@ -35,7 +35,7 @@ Command line options:
 
 -t num (use num threads; default max)
 
--v (verbose on; default off)
+-v (turn on verbose mode; default is off)
 
 Examples:
 
