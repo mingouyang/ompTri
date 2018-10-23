@@ -19,6 +19,8 @@ or
 
 gcc -Wall -O3 -fopenmp *.c -o ompTri
 
+It was tested on only CentOS 7.5.
+
 =======
 
 Command line options:
