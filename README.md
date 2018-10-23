@@ -9,6 +9,8 @@ Donato E, Ouyang M, Peguero-Isalguez C.  Triangle counting with a multi-core com
 
 It received Honorable Mention in 2018: https://graphchallenge.mit.edu/champions
 
+===
+
 To compile:
 
 icc -Wall -O3 -xHost -ipo -qopenmp *.c -o ompTri
@@ -30,4 +32,10 @@ Command line options:
 -t num (use num threads)
 
 -v (verbose)
+
+Examples:
+
+./ompTri -v -f t -g friendster_adj.tsv
+
+./ompTri -v -f m -g friendster_adj.mmio
 
