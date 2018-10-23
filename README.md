@@ -19,6 +19,8 @@ or
 
 gcc -Wall -O3 -fopenmp *.c -o ompTri
 
+===
+
 Command line options:
 
 -f a (input file format is AdjacencyGraph)
