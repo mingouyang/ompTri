@@ -29,3 +29,5 @@ Command line options:
 
 -t num (use num threads)
 
+-v (verbose)
+
