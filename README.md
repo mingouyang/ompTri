@@ -31,7 +31,7 @@ Command line options:
 
 -t (input file format is adjacency tsv)
 
--T num (use num threads; default max)
+-T nnn (use nnn threads; default max)
 
 -v (turn on verbose mode; default is off)
 
