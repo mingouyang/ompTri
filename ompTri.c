@@ -77,40 +77,37 @@ static uint64_t forward(void) {
 int main(int argc, char* argv[]) {
   struct timeval start, stop;
   char *filename, format;
+  uint64_t count, i;
   float t1, t2, t3;
-  uint64_t count;
   int c;
 
   verbose = 0;
   format = 'a';
   filename = NULL;
   numT = omp_get_max_threads();
-  while ((c = getopt(argc, argv, "f:g:t:v")) != -1) {
+  while ((c = getopt(argc, argv, "amtvT:")) != -1) {
     switch (c) {
-    case 'f': //file format, one char
-      format = optarg[0];
-      /* a: AdjacencyGraph
-       * m: mmio
-       * t: tsv
-       */
+    case 'a':
+      format = 'a'; //AdjacencyGraph
       break;
-    case 'g': //file name
-      filename = (char*)malloc(sizeof(char) * (strlen(optarg) + 1));
-      strcpy(filename, optarg);
+    case 'm':
+      format = 'm'; //mmio
       break;
-    case 't': //number of threads
-      sscanf(optarg, "%lu", &numT);
+    case 't':
+      format = 't'; //tsv
       break;
     case 'v': //verbose
       verbose = 1;
       break;
+    case 'T': //number of threads
+      sscanf(optarg, "%lu", &numT);
+      break;
     default: break;
     }
   }
-  if (format != 'a' && format != 'm' && format != 't') {
-    fprintf(stderr, "file format:\n");
-    fprintf(stderr, "\ta for AdjacencyGraph\n\tm for mmio\n\tt for tsv\n");
-    return 0;
+  for (i = optind; i < argc; i++) {
+    filename = (char*) malloc(sizeof(char) * (strlen(argv[i]) + 1));
+    strcpy(filename, argv[i]);
   }
   if (!filename) {
     fprintf(stderr, "filename?\n");
@@ -137,21 +134,38 @@ int main(int argc, char* argv[]) {
   gettimeofday(&stop, NULL);
   t1 = (stop.tv_sec - start.tv_sec) +
     (stop.tv_usec - start.tv_usec) / (float)MILLION; //reading file
+  //memory not freed: degree, neighbor, neighbor[*]
 
   gettimeofday(&start, NULL);
   toSimpleGraph(); //useless
   dfs2core();
-  sortBrkTie();
+  sortBrkTie(); //memory not freed: idx, newID -- they are needed by luCSR.c
   luCSR();
   gettimeofday(&stop, NULL);
   t2 = (stop.tv_sec - start.tv_sec) +
     (stop.tv_usec - start.tv_usec) / (float)MILLION; //preprocessing
+
+  free(degree);
+  for (i = 0; i < n; i++)
+    if (neighbor[ idx[i] ]) {
+      free(neighbor[ idx[i] ]);
+      neighbor[ idx[i] ] = NULL;
+    }
+  free(neighbor);
+  free(idx);
+  free(newID);
 
   gettimeofday(&start, NULL);
   count = forward();
   gettimeofday(&stop, NULL);
   t3 = (stop.tv_sec - start.tv_sec) +
     (stop.tv_usec - start.tv_usec) / (float)MILLION; //counting
+
+  free(rowNum);
+  free(upper);
+  free(upperOffset);
+  free(lower);
+  free(lowerOffset);
 
   if (verbose) {
     printf("n %lu, m %lu, %lu threads\n", n, m, numT);

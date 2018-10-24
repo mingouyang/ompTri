@@ -108,8 +108,13 @@ void sortBrkTie(void) {
 
   count = 0;
   //drop zero-degree vertices
-  while (degree[ idx[n - 1] ] == 0)
+  while (degree[ idx[n - 1] ] == 0) {
+    if (neighbor[ idx[n - 1] ]) {
+      free(neighbor[ idx[n - 1] ]);
+      neighbor[ idx[n - 1] ] = NULL;
+    }
     count++, n--;
+  }
 
   free(hub);
 

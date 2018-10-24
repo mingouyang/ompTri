@@ -88,6 +88,8 @@ void readMMIO(char *filename) {
   for (i = 0; i < n; i++) {
     if (degree[i])
       neighbor[i] = (uint64_t*)malloc(sizeof(uint64_t) * degree[i]);
+    else
+      neighbor[i] = NULL;
     degree[i] = 0;
   }
 

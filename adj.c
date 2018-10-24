@@ -133,6 +133,8 @@ void readAdjGraph(char *filename) {
       for (j = 0; j < degree[i]; j++)
 	neighbor[i] [j] = row[ rowOffset[i] + j ];
     }
+    else
+      neighbor[i] = NULL;
   }
 
   free(row);
