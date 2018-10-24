@@ -25,23 +25,21 @@ It was tested on only CentOS 7.5.
 
 Command line options:
 
--f a (input file format is AdjacencyGraph; default)
+-a (input file format is AdjacencyGraph; default)
 
--f m (input file format is adjacency mmio)
+-m (input file format is adjacency mmio)
 
--f t (input file format is adjacency tsv)
+-t (input file format is adjacency tsv)
 
--g filename (graph file name)
-
--t num (use num threads; default max)
+-T num (use num threads; default max)
 
 -v (turn on verbose mode; default is off)
 
 Examples:
 
-./ompTri -v -f t -g friendster_adj.tsv
+./ompTri -t friendster_adj.tsv (verbose off; file format is tsv; use the maximum number of threads)
 
-./ompTri -v -f m -g friendster_adj.mmio
+./ompTri -v -m -T 64 friendster_adj.mmio (verbose on; file format is mmio; use 64 threads)
 
 =======
 
